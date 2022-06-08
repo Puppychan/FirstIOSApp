@@ -11,7 +11,11 @@ import SwiftUI
 struct FirstAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+//            CardView(scrum: DailyScrum.sampleData[0])
+            NavigationView {
+                ScrumsView(scrums: DailyScrum.sampleData)
+            }
         }
     }
 }

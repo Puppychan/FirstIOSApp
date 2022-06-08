@@ -1,0 +1,40 @@
+//
+//  CardView.swift
+//  FirstApp
+//
+//  Created by Nhung Tran on 28/05/2022.
+//
+
+//import Foundation
+import SwiftUI
+struct CardView : View {
+    let scrum : DailyScrum
+    var body : some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(scrum.title)
+                .font(.headline)
+                .accessibilityAddTraits(.isHeader)
+            HStack (spacing: 2.4) {
+                Label("\(scrum.attendees.count)", systemImage: "person.3")
+                    .accessibilityLabel("\(scrum.attendees.count) attendees")
+                Label("\(scrum.lengthInMinutes)", systemImage: "clock")
+                    .padding (.trailing, 20)
+                    .padding(.leading, 20)
+                    .accessibilityLabel("\(scrum.lengthInMinutes) minute meeting")
+                    .labelStyle(.trailingIcon)
+            }
+            .font(.caption)
+        }
+        .padding()
+        .foregroundColor(scrum.theme.accentColor)
+    }
+}
+
+struct CardView_Preview : PreviewProvider {
+    static var scrum = DailyScrum.sampleData[0]
+    static var previews : some View {
+        CardView(scrum: scrum)
+            .background(scrum.theme.mainColor)
+            .previewLayout(.fixed(width: 400, height: 60))
+    }
+}
